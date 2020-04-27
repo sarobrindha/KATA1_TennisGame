@@ -19,6 +19,8 @@ import com.example.myapplication.viewmodel.GameOnFactory
 import com.example.myapplication.viewmodel.GameOnViewModel
 import kotlinx.android.synthetic.main.fragment_game_on.*
 
+private const val TIME_DELAY = 5000L
+
 class GameOnFragment : Fragment() {
 
     private val playerInfo by lazy {
@@ -103,16 +105,15 @@ class GameOnFragment : Fragment() {
             winner_text.text = getString(R.string.congrats_message, playerName)
             Handler().postDelayed({
                 findNavController().navigate(R.id.action_gameOnFragment_to_scoreBoardFragment)
-            }, 3000)
+            }, TIME_DELAY)
         }
     }
 
     private fun showErrorMessage(errorMessage: String?) {
         AlertDialog.Builder(requireContext()).apply {
-            setTitle("Error")
             setMessage(errorMessage)
-            setPositiveButton("Ok") { dialog, _ -> dialog.dismiss() }
-            setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
+            setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.dismiss() }
+            setNegativeButton(getString(R.string.no)) { dialog, _ -> dialog.dismiss() }
             show()
         }
     }

@@ -1,15 +1,16 @@
 package com.example.myapplication.util
 
-import android.util.Log
 import androidx.annotation.VisibleForTesting
 
 object GameOnUtil {
     @VisibleForTesting
     const val PLAYER_ONE_KEY = "player_one"
+
     @VisibleForTesting
     const val PLAYER_TWO_KEY = "player_two"
-    @VisibleForTesting
-    const val MAX_SCORE = 40
+
+    private const val MAX_SCORE = 40
+    private const val INIT_POSITION = 0
 
     fun generateData(playerInfo: Pair<String, String>) =
         mutableMapOf(
@@ -28,7 +29,7 @@ object GameOnUtil {
             }
             val playerType =
                 if (it.key == PLAYER_ONE_KEY) PlayerType.Player1 else PlayerType.Player2
-            ScoreDetail(playerType, it.value[0], score)
+            ScoreDetail(playerType, it.value[INIT_POSITION], score)
         }
     }
 

@@ -10,4 +10,6 @@
     <string name="congrats_message">Game Over \n Congratulations %s</string>
     <string name="reset_text">Reset Game</string>
     <string name="end_game">End Game</string>
+    <string name="ok">OK</string>
+    <string name="no">No</string>
 </resources>

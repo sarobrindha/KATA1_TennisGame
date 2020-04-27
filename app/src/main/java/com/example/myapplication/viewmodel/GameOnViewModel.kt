@@ -13,6 +13,10 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
+private const val NUMBER_OF_CHANCES = 4L
+private const val TIME_INTERVAL = 6000L
+private const val INITIAL_TIME_DELAY = 0L
+
 class GameOnViewModel(private val playerInfo: Pair<String, String>) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -26,17 +30,17 @@ class GameOnViewModel(private val playerInfo: Pair<String, String>) : ViewModel(
         processScoreForPlayer()
     }
 
-    fun processScoreForPlayer(){
+   private fun processScoreForPlayer(){
         val playerInfoMap = GameOnUtil.generateData(playerInfo)
         val randomPlayerList = mutableListOf<Pair<String, String>>()
         compositeDisposable.add(
-            Observable.interval(0, 6000, TimeUnit.MILLISECONDS)
+            Observable.interval(INITIAL_TIME_DELAY, TIME_INTERVAL, TimeUnit.MILLISECONDS)
                 .flatMap {
                     val winner = playerInfoMap.entries.shuffled().random()
                     randomPlayerList.add(Pair(winner.key, winner.value))
                     Observable.just(GameOnUtil.getScore(randomPlayerList))
                 }
-                .take(4)
+                .take(NUMBER_OF_CHANCES)
                 .doFinally { mutableGamaDataState.postValue(DataState.GameOver()) }
                 .subscribeOn(Schedulers.io())
                 .subscribe({
