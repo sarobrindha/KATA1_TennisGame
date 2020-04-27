@@ -3,4 +3,11 @@
     <string name="start_game_text">Start Game</string>
     <string name="enter_player_name_hint">Enter player name</string>
     <string name="play_button_text">Lets Play</string>
+    <string name="player_info">Player Information</string>
+    <string name="game_on">Game On</string>
+    <string name="game_over">Game Over</string>
+    <string name="score_per_player">%s : %d</string>
+    <string name="congrats_message">Game Over \n Congratulations %s</string>
+    <string name="reset_text">Reset Game</string>
+    <string name="end_game">End Game</string>
 </resources>
